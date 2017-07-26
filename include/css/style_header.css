@@ -1,0 +1,12 @@
+.navbar {
+    border-bottom: 3px solid #ffdd57;
+    box-shadow: 0 2px 4px #BBB;
+}
+
+#navbar-brand-title {
+    color:#0b47b9;
+}
+
+.submit-container {
+    text-align: center;
+}
