@@ -1,17 +1,13 @@
-<?php
-$path = $_SERVER['DOCUMENT_ROOT'].'/dmrc';
-?>
-
 <!doctype html>
 <html lang="en">
 <head>
 <!--HEAD-->
-    <?php require $path.'/include/inc.head.php' ?>
+    <?php require './inc.head.php' ?>
 </head>
 <body>
 
 <!--HEADER/NAVBAR-->
-    <?php require $path.'/include/inc.header.php' ?>
+    <?php require './inc.header.php' ?>
 
     <div class="container">
 
@@ -58,6 +54,6 @@ $path = $_SERVER['DOCUMENT_ROOT'].'/dmrc';
     </div><!--end container-->
 
 <!--FOOTER-->
-    <?php require $path.'/include/inc.footer.php' ?>
+    <?php require './inc.footer.php' ?>
 </body>
 </html>

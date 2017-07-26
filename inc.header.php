@@ -1,15 +1,11 @@
-<?php
-$path = $_SERVER['DOCUMENT_ROOT'].'/dmrc';
-?>
-
-<style><?php require "$path/include/css/style_header.css"?></style>
-<script defer><?php require "$path/include/js/script_header.js"?></script>
+<link rel="stylesheet" href="./resources/css/style_header.css">
+<script src="./resources/js/script_header.js" defer></script>
 
 <div class="navbar">
 
     <div class="navbar-brand">
         <a href="/" class="navbar-item">
-            <img src="dmrc logo.gif" alt="DMRC Logo">
+            <img src='<?php echo "./resources/images/dmrc_logo.gif"?>' alt="DMRC Logo">
             <span id="navbar-brand-title">DMRC Service Portal</span>
         </a>
 
