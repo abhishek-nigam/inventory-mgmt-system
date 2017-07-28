@@ -8,9 +8,14 @@
 </head>
 <body>
 
-
+<!--HEADER/NAVBAR-->
+    <?php require './inc.header.php' ?>
 <?php
-    
+    //////////////// S T A R T /////////////////////
+?>
+
+<!--/////////// NOT DISPLAY PHP CODE ////////////// -->
+<?php    
     if(!logged_in())
     {
         if(
@@ -30,6 +35,7 @@
             $lastname = trim($_POST['lastname']);
 
             if(
+                // Add all required fields here
                 !empty($username) &&
                 !empty($password) &&
                 !empty($password_again) &&
@@ -70,108 +76,122 @@
                                 else
                                 {
                                     $notification = "Sorry we couldn't register you at this moment. Please try again later.";
-                                }
-                            }
-                        }
-                    }
-                }
+                                } // end query result if
+                            } // end row count if
+                        } // end query result if
+                    } // end password match if
+                } // end word limit if
             }
             else
             {
                 $notification = 'All fields are required';
-            }
-        }
-    }
-
+            } // end required fields if
+        } // end post items if
+    } // end not logged in if
 ?>
 
-<!--MAIN BODY CONTENT  -->
 
-<!--HEADER/NAVBAR-->
-    <?php require './inc.header.php' ?>
+<!--/////////// DISPLAY CONTENT ////////////// -->
+<div class="container">
+    <div class="columns">
+        
+        <div class="column is-4-desktop is-offset-4-desktop is-10-mobile is-offset-1-mobile is-10-touch is-offset-1-touch">
 
-    <div class="container">
+            <?php if(!logged_in())
+                { 
+            ?>
+            
+                <div class="box">
 
-        <div class="columns">
-            <div class="column is-4-desktop is-offset-4-desktop is-10-mobile is-offset-1-mobile is-10-touch is-offset-1-touch">
+                    <h1 class="title">Sign Up</h1>
+                    <h2 class="subtitle">Register to access this portal</h2>
+                    
+                    <?php if(isset($notification))
+                        {
+                    ?>
+                        <div class="notification">
+                            <p><?php echo $notification ?></p>
+                        </div>
+                    <?php
+                        } // end notification if
+                    ?> 
 
-                <?php if(!logged_in()) { ?>
-                
-                    <div class="box">
+                    <form action="<?php echo $current_file ?>" method="POST">
 
-                            <h1 class="title">Sign Up</h1>
-                            <h2 class="subtitle">Register to access this portal</h2>
-                            
-                            <?php if(isset($notification)) { ?>
-                                <div class="notification">
-                                    <p><?php echo $notification ?></p>
-                                </div>
-                            <?php } ?> 
+                        <div class="field">
+                            <div class="label">Username</div>
+                            <div class="control has-icons-left">
+                                <input type="text" class="input" placeholder="Enter username" maxlength="30" value="<?php if(isset($username)) { echo $username; }?>" name="username">
+                                <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
+                            </div>
+                            <p class="help is-primary">This field is required</p>
+                        </div>
 
-                            <form action="<?php echo $current_file ?>" method="POST">
+                        <div class="field">
+                            <div class="label">Password</div>
+                            <div class="control has-icons-left">
+                                <input type="password" class="input" placeholder="Enter password" name="password">
+                                <span class="icon is-small is-left"><i class="fa fa-key"></i></span>
+                            </div>
+                            <p class="help is-primary">This field is required</p>
+                        </div>
 
-                                <div class="field">
-                                    <div class="label">Username</div>
-                                    <div class="control has-icons-left">
-                                        <input type="text" class="input" placeholder="Enter username" maxlength="30" value="<?php if(isset($username)) { echo $username; }?>" name="username">
-                                        <span class="icon is-small is-left"><i class="fa fa-user"></i></span>
-                                    </div>
-                                    <p class="help is-primary">This field is required</p>
-                                </div>
+                        <div class="field">
+                            <div class="label">Password again:</div>
+                            <div class="control has-icons-left">
+                                <input type="password" class="input" placeholder="Enter password again" name="password_again">
+                                <span class="icon is-small is-left"><i class="fa fa-key"></i></span>
+                            </div>
+                            <p class="help is-primary">This field is required</p>
+                        </div>
 
-                                <div class="field">
-                                    <div class="label">Password</div>
-                                    <div class="control has-icons-left">
-                                        <input type="password" class="input" placeholder="Enter password" name="password">
-                                        <span class="icon is-small is-left"><i class="fa fa-key"></i></span>
-                                    </div>
-                                    <p class="help is-primary">This field is required</p>
-                                </div>
+                        <div class="field">
+                            <div class="label">First Name:</div>
+                            <div class="control">
+                                <input type="text" class="input" placeholder="Enter first name" maxlength="40" value="<?php if(isset($firstname)) { echo $firstname; }?>" name="firstname">
+                            </div>
+                            <p class="help is-primary">This field is required</p>
+                        </div>
 
-                                <div class="field">
-                                    <div class="label">Password again:</div>
-                                    <div class="control has-icons-left">
-                                        <input type="password" class="input" placeholder="Enter password again" name="password_again">
-                                        <span class="icon is-small is-left"><i class="fa fa-key"></i></span>
-                                    </div>
-                                    <p class="help is-primary">This field is required</p>
-                                </div>
+                        <div class="field">
+                            <div class="label">Last Name:</div>
+                            <div class="control">
+                                <input type="text" class="input" placeholder="Enter last name" maxlength="40" value="<?php if(isset($lastname)) { echo $lastname; }?>" name="lastname">
+                            </div>
+                        </div>
 
-                                <div class="field">
-                                    <div class="label">First Name:</div>
-                                    <div class="control">
-                                        <input type="text" class="input" placeholder="Enter first name" maxlength="40" value="<?php if(isset($firstname)) { echo $firstname; }?>" name="firstname">
-                                    </div>
-                                    <p class="help is-primary">This field is required</p>
-                                </div>
+                        <br>
 
-                                <div class="field">
-                                    <div class="label">Last Name:</div>
-                                    <div class="control">
-                                        <input type="text" class="input" placeholder="Enter last name" maxlength="40" value="<?php if(isset($lastname)) { echo $lastname; }?>" name="lastname">
-                                    </div>
-                                </div>
+                        <div class="field submit-container">
+                            <input type="submit" value="Sign Up" class="button is-success">
+                        </div>
 
-                                <div class="field submit-container">
-                                    <input type="submit" value="Sign Up" class="button is-success">
-                                </div>
+                    </form>
 
-                            </form>
+                </div><!-- end box-->
+        
+            <?php 
+                }
+                else
+                {
+            ?>
+                <div class="notification is-warning">
+                    You are already logged in.<br>
+                    Please <a href="./accounts.signout.php">sign out</a> to register.
+                </div>
+            <?php 
+                } // end not logged in if
+            ?>
 
-                        </div><!-- end box-->
-                
-                
-                <?php } else { ?>
-                    <div class="notification is-warning">
-                        You are already logged in.<br>
-                        Please <a href="./accounts.signout.php">sign out</a> to register.
-                    </div>
-                <?php } ?>
+        </div><!-- end column-->
 
-            </div><!-- end column-->
-        </div><!--- end columns-->
+    </div><!--- end columns-->
+</div><!--end container-->
 
-    </div><!--end container-->
+
+<?php
+    /////////////////// E N D ////////////////////////
+?>
 
 <!--FOOTER-->
     <?php require './inc.footer.php' ?>

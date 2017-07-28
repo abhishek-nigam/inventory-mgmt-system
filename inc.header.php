@@ -28,7 +28,7 @@
                 <div class="navbar-dropdown">
 
                     <a href="./table.computer_stock.php" class="navbar-item is-active">Computer Stock</a>
-                    <a href="" class="navbar-item">Table 2</a>
+                    <a href="./table.computer_repair.php" class="navbar-item">Computer Repair</a>
                     <hr class="navbar-divider">
                     <a href="" class="navbar-item">More Services</a>
 

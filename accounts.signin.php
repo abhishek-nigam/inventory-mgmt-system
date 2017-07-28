@@ -8,6 +8,24 @@
 </head>
 <body>
 
+<!--HEADER/NAVBAR-->
+    <?php require './inc.header.php' ?>
+
+<?php
+    if(isset($_GET['redirect']))
+    {
+        if($_GET['redirect'] == 'true')
+        {   $redirect = true;   }
+        else
+        {   $redirect = false; } //end redirect true if
+    }
+    else
+    {   $redirect = false; } // end redirect if
+
+//////////////// S T A R T /////////////////////
+?>
+
+<!--/////////// NOT DISPLAY PHP CODE ////////////// -->
 
 <?php
     if(isset($_POST['username']) && isset($_POST['password']))
@@ -41,45 +59,60 @@
                 }
                 else
                 {
-                    /*
-                     * Runs when db returns more than one row for a particular combination of username and password.(Possibly didn't handle while registering)
-                     * */
-                    $notification = 'Unhandled server error';
-                }
+                     /* Runs when db returns more than one row for a particular combination of username and password.(Possibly didn't handle while registering)
+                     */
+                    $notification = 'Unexpected server error';
+                } // end row count if
             }
             else
             {
-                die('Error: '.mysqli_error($conn));
-            }
+                $notification = 'We cannot to database right now';
+            } // end query result if
         }
         else
         {
             $notification = 'You must give a username and password';
-        }
-    }
+        } // end empty username and password if
+    } // end username and password if
 ?>
 
-<!--MAIN BODY CONTENT  -->
 
-<!--HEADER/NAVBAR-->
-    <?php require './inc.header.php' ?>
+<!--/////////// DISPLAY CONTENT ////////////// -->
 
-    <div class="container">
+<?php if($redirect)
+        {
+?>
+    <div class="hero is-warning">
+        <div class="hero-body">
+            <h1 class="title">You need to login to access this website</h1>
+        </div>
+    </div>
 
-        <div class="columns">
-            <div class="column is-4-desktop is-offset-4-desktop is-10-mobile is-offset-1-mobile is-10-touch is-offset-1-touch">
+    <br>
+<?php   }
+?>
 
-                <?php if(!logged_in()) { ?>
+<div class="container">
+    <div class="columns">
+
+        <div class="column is-4-desktop is-offset-4-desktop is-10-mobile is-offset-1-mobile is-10-touch is-offset-1-touch">
+
+            <?php if(!logged_in()) 
+                    { 
+            ?>
                     <div class="box">
 
                         <h1 class="title">Sign In</h1>
                         <h2 class="subtitle">Login to access the portal</h2>
                         
-                        <?php if(isset($notification)) { ?>
-                            <div class="notification">
-                                <p><?php echo $notification ?></p>
-                            </div>
-                        <?php } ?> 
+                        <?php if(isset($notification)) 
+                                { 
+                        ?>
+                                <div class="notification">
+                                    <p><?php echo $notification ?></p>
+                                </div>
+                        <?php   }
+                        ?> 
 
                         <form action="<?php echo $current_file ?>" method="POST">
 
@@ -111,20 +144,31 @@
                     </div><!-- end box-->
 
 
-                <?php } else { ?>
+            <?php   }
+                else
+                    { 
+            ?>
                     <div class="notification is-success">
                         You are already logged in.<br>
                         Please <a href="./accounts.signout.php">sign out</a> to sign in again as a different user.
                     </div>
-                <?php } ?>
+            <?php 
+                    } // end logged in if
+            ?>
 
-                
+            
 
-            </div><!-- end column-->
-        </div><!--- end columns-->
+        </div><!-- end column-->
 
-    </div><!--end container-->
+    </div><!--- end columns-->
+</div><!--end container-->
 
+
+
+
+<?php
+    /////////////////// E N D ////////////////////////
+?>
 <!--FOOTER-->
     <?php require './inc.footer.php' ?>
 </body>
