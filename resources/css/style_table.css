@@ -1,0 +1,7 @@
+.table-container {
+    overflow: auto;
+}
+
+.options {
+    cursor: pointer;
+}

@@ -1,10 +1,12 @@
+<?php require_once './inc.core.php' ?>
+
 <link rel="stylesheet" href="./resources/css/style_header.css">
 <script src="./resources/js/script_header.js" defer></script>
 
 <div class="navbar">
 
     <div class="navbar-brand">
-        <a href="/" class="navbar-item">
+        <a href="/dmrc" class="navbar-item">
             <img src='<?php echo "./resources/images/dmrc_logo.gif"?>' alt="DMRC Logo">
             <span id="navbar-brand-title">DMRC Service Portal</span>
         </a>
@@ -25,7 +27,7 @@
                 <a href="" class="navbar-link is-active">Services</a>
                 <div class="navbar-dropdown">
 
-                    <a href="" class="navbar-item is-active">Table 1</a>
+                    <a href="./table.computer_stock.php" class="navbar-item is-active">Computer Stock</a>
                     <a href="" class="navbar-item">Table 2</a>
                     <hr class="navbar-divider">
                     <a href="" class="navbar-item">More Services</a>
@@ -39,20 +41,35 @@
 
         <div class="navbar-end">
 
+            <?php if(logged_in()) {
+
+                $firstname = get_user_field('firstname');
+                
+            ?>
+                <div href="" class="navbar-item has-dropdown is-hoverable">
+                    <a href="" class="navbar-link is-active">Hello, <?php echo $firstname ?></a>
+                    <div class="navbar-dropdown">
+
+                        <a href="" class="navbar-item is-active">Profile</a>
+
+                    </div>
+                </div><!-- end dropdown navbar item-->
+            <?php } ?>
+            
             <div class="navbar-item">
-                <div class="field is-grouped">
-                    <p class="control">
-                        <a href="http://www.delhimetrorail.com/" class="button is-danger is-outlined">
-                            <span>DMRC website</span>
-                        </a>
-                    </p>
-                    <p class="control">
-                        <a href="" class="button is-primary">
-                            <span class="icon"><i class="fa fa-sign-in"></i></span>
-                            <span>Sign In</span>
-                        </a>
-                    </p>
-                </div><!--end field grouped-->
+                
+                <?php if(!logged_in()) { ?>
+                    <a href="./accounts.signin.php" class="button is-primary">
+                        <span class="icon"><i class="fa fa-sign-in"></i></span>
+                        <span>Sign In</span>
+                    </a>
+                <?php } else { ?>
+                    <a href="./accounts.signout.php" class="button is-primary"> 
+                        <span class="icon"><i class="fa fa-sign-out"></i></span>
+                        <span>Sign Out</span>
+                    </a>
+                <?php } ?>
+
             </div><!--end navbar item-->
 
         </div><!-- end navbar start-->
