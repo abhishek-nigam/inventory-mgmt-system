@@ -20,11 +20,22 @@ for (option of options)
                 {
                 if(option_type == 'edit')
                     {
+
+                        var path = "./table." + table_name + ".edit.php?" + "record_id=" + data_id;
+/*
                         if(table_name == 'computer_stock')
-                            {
-                                var path = "./table.computer_stock.edit.php?" + "record_id=" + data_id;
-                                window.location = path;
-                            }
+                        {
+                            // console.log('Sent to computer stock edit');
+                            var path = "./table.computer_stock.edit.php?" + "record_id=" + data_id;
+                            window.location = path;
+                        }
+                        // else if(table_name == 'computer_repair')
+                        else
+                        {
+                            console.log('Sent to computer repair edit');
+                            var path = "./table.computer_repair.edit.php?" + "record_id=" + data_id;
+                            window.location = path;
+                        }*/
                     }
                 else if(option_type == 'delete')
                     {
