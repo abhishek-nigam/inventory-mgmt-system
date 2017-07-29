@@ -14,8 +14,20 @@
     <?php require './inc.header.php' ?>
 
 <?php
+    $records_limit = 2;
+
     if(logged_in())
     {
+        if(isset($_GET['q']))
+        {
+            $search = $_GET['q'];
+        }
+
+        if(isset($_GET['page']))
+        {
+            $page = abs(intval($_GET['page']));
+            $page--;
+        }
     //////////////// S T A R T /////////////////////
 ?>
 
@@ -23,14 +35,32 @@
 <!--/////////// NOT DISPLAY PHP CODE ////////////// -->
 <?php
 
-    $query = "SELECT * FROM `computer_stock`;";
-    $result = mysqli_query($conn,$query);
+    if(isset($search))
+    {   
+        $search_safe = mysqli_real_escape_string($conn,$search);
+        $search_safe_int = intval($search_safe);
 
-    if(!$result)
-    {
-        $notification = 'Sorry, cannot fetch records at this moment.<br>Please try again later';
+        $query_wo_limit = "SELECT * FROM `computer_stock` WHERE (`Username` LIKE '%$search_safe%') OR (`Department` LIKE '%$search_safe%') OR (`Vendor Name` LIKE '%$search_safe%') OR (`ID`=$search_safe_int) OR (`Bill No` LIKE '%$search_safe%') OR (`PO No` LIKE '%$search_safe%')";
     }
     else
+    {
+        $query_wo_limit = "SELECT * FROM `computer_stock`";
+    } // end search if
+
+    if(isset($page) && $page>0)
+    {
+        $offset = $page*$records_limit;
+        $query = $query_wo_limit." LIMIT $records_limit OFFSET $offset";
+    }
+    else
+    {
+        $query = $query_wo_limit." LIMIT $records_limit";
+    }// end pagination if
+    
+
+    $result = mysqli_query($conn,$query);
+
+    if($result)
     {
         $row_count = mysqli_num_rows($result);
     } // end query result if
@@ -52,9 +82,20 @@
                     </div>
 
                     <div class="level-right">
+
                         <div class="level-item">
                             <a href="./table.computer_stock.add.php" class="button is-info"><span class="fa fa-plus"></span>&nbsp;Add</a>    
                         </div>
+
+                        <form class="level-item field has-addons" action="<?php echo $current_file?>">
+                            <div class="control">
+                                <input type="search" name="q" class="input" value="<?php if(isset($search)){ echo $search ;}?>">
+                            </div>
+                            <div class="control">
+                                <a href="" class="button is-info">Search</a>
+                            </div>
+                        </form><!-- end level item form-->
+
                     </div>
 
                 </div><!-- end level-->
@@ -164,9 +205,11 @@
                     else
                     {
                 ?>
-                        <div class="notification is-danger">
-                            Cannot fetch records at this time.<br>
-                            Please try again later.
+                        <div class="column is-4-desktop is-offset-4-desktop is-10-mobile is-offset-1-mobile is-10-touch is-offset-1-touch">
+                            <div class="notification is-danger">
+                                Cannot fetch records at this time.<br>
+                                Please try again later.
+                            </div>
                         </div>
                 <?php
                     } // end result if
@@ -174,6 +217,33 @@
 
 
             </div><!--end block-->
+
+            <nav class="pagination">
+                <?php
+                    if($page>0)
+                    {
+                ?>
+                        <a class="pagination-previous">Previous</a>
+                <?php
+                    }
+
+                    $query = $query_wo_limit." ";
+
+                    $result = mysqli_query($conn,$query);
+
+                    if($result)
+                    {
+                        $row_count = mysqli_num_rows($result);
+
+                        if($row_count>0)
+                        {
+                ?>
+                        <a class="pagination-next">Next Page</a>
+                <?php
+                        } //end row count if
+                    } // end query result if
+                ?>
+            </nav>
         </div><!--end column-->
 
     </div><!-- end columns-->

@@ -149,8 +149,10 @@
                     { 
             ?>
                     <div class="notification is-success">
-                        You are already logged in.<br>
-                        Please <a href="./accounts.signout.php">sign out</a> to sign in again as a different user.
+                        <h1 class="title">Hi, there! Have a good day</h1>
+
+                        <br>
+                        <small>Sign in again as a different user? <a href="./accounts.signout.php">Sign out</a>.</small>
                     </div>
             <?php 
                     } // end logged in if

@@ -10,10 +10,12 @@ for (option of options)
             if(option_type == 'delete')
                 {
                     var proceed_confirm = confirm("Do you really want to delete record with ID " + data_id + " ? \nWARNING: This will permanently delete this record!");
+                    console.log(proceed_confirm);
                 }
             else if(option_type == 'edit')
                 {
                     var proceed_confirm = confirm("Do you want to edit the record with ID " + data_id + " ?");
+                    console.log(proceed_confirm);
                 }
 
             if(proceed_confirm)
@@ -22,6 +24,8 @@ for (option of options)
                     {
 
                         var path = "./table." + table_name + ".edit.php?" + "record_id=" + data_id;
+                        console.log(path);
+                        // window.location = path;
 /*
                         if(table_name == 'computer_stock')
                         {

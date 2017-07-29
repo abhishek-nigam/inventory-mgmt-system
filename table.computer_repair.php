@@ -16,6 +16,10 @@
 <?php
     if(logged_in())
     {
+        if(isset($_GET['q']))
+        {
+            $search = $_GET['q'];
+        }
     //////////////// S T A R T /////////////////////
 ?>
 
@@ -23,17 +27,24 @@
 <!--/////////// NOT DISPLAY PHP CODE ////////////// -->
 <?php
 
-    $query = "SELECT * FROM `computer_repair`;";
-    $result = mysqli_query($conn,$query);
+    if(isset($search))
+    {   
+        $search_safe = mysqli_real_escape_string($conn,$search);
+        $search_safe_int = intval($search_safe);
 
-    if(!$result)
-    {
-        $notification = 'Sorry, cannot fetch records at this moment.<br>Please try again later';
+        $query = "SELECT * FROM `computer_repair` WHERE (`Username` LIKE '%$search_safe%') OR (`Department` LIKE '%$search_safe%') OR (`ID`=$search_safe_int) OR (`HW Detail` LIKE '%$search_safe%') OR (`Item Description` LIKE '%$search_safe%') OR (`Fault Description` LIKE '%$search_safe%') OR (`HW Part` LIKE '%$search_safe%') OR (`Status` LIKE '%$search_safe%')";
     }
     else
     {
+        $query = "SELECT * FROM `computer_repair`";
+    } // end search if
+    
+    $result = mysqli_query($conn,$query);
+
+    if($result)
+    {
         $row_count = mysqli_num_rows($result);
-    } // end query result if
+    } // end query result if 
 ?>
 
 <!--/////////// DISPLAY CONTENT ////////////// -->
@@ -52,9 +63,20 @@
                     </div>
 
                     <div class="level-right">
+                        
                         <div class="level-item">
                             <a href="./table.computer_repair.add.php" class="button is-info"><span class="fa fa-plus"></span>&nbsp;Add</a>    
                         </div>
+
+                        <form class="level-item field has-addons" action="<?php echo $current_file?>">
+                            <div class="control">
+                                <input type="search" name="q" class="input" value="<?php if(isset($search)){ echo $search ;}?>">
+                            </div>
+                            <div class="control">
+                                <a href="" class="button is-info">Search</a>
+                            </div>
+                        </form><!-- end level item form-->
+
                     </div>
 
                 </div><!-- end level-->
@@ -175,9 +197,11 @@
                     else
                     {
                 ?>
-                        <div class="notification is-danger">
-                            Cannot fetch records at this time.<br>
-                            Please try again later.
+                        <div class="column is-4-desktop is-offset-4-desktop is-10-mobile is-offset-1-mobile is-10-touch is-offset-1-touch">
+                            <div class="notification is-danger">
+                                Cannot fetch records at this time.<br>
+                                Please try again later.
+                            </div>
                         </div>
                 <?php
                     } // end result if
