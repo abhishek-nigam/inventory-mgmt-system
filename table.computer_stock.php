@@ -98,7 +98,7 @@
                         <div class="level-item">
                             <h1 class="title">Computer Stock Entry</h1>
                         </div>
-                    </div>
+                    </div><!--end level left -->
 
                     <div class="level-right">
 
@@ -141,7 +141,7 @@
                             ?>
                         </form><!-- end level item form-->
 
-                    </div>
+                    </div><!--end level right-->
 
                 </div><!-- end level-->
             </div><!--end block-->
