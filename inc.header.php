@@ -44,14 +44,18 @@
                 $firstname = get_user_field('firstname');
                 
             ?>
-                <div href="" class="navbar-item has-dropdown is-hoverable">
+                <div class="navbar-item">
+                    <?php echo "Hello, $firstname" ;?></a>
+                </div>
+                
+                <!-- <div href="" class="navbar-item has-dropdown is-hoverable">
                     <a href="" class="navbar-link is-active">Hello, <?php echo $firstname ?></a>
                     <div class="navbar-dropdown">
 
                         <a href="" class="navbar-item is-active">Profile</a>
 
                     </div>
-                </div><!-- end dropdown navbar item-->
+                </div> -->
             <?php } ?>
             
             <div class="navbar-item">

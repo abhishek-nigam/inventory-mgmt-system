@@ -30,30 +30,28 @@
 
         if($result)
         {
-            //This loop runs only once
-            foreach($result as $row)
-            {
-                $id = $row['ID'];
-                $old_id = $row['Old ID'];
-                $username = $row['Username'];
-                $emp_no = $row['Emp No'];
-                $department = $row['Department'];
-                $detail = $row['Detail'];
-                $serial_no = $row['Serial No'];
-                $model_no = $row['Model No'];
-                $delivery_date = $row['Delivery Date'];
-                $bill_no = $row['Bill No'];
-                $po_no = $row['PO No'];
-                $asset_no = $row['Asset No'];
-                $indent_no = $row['Indent No'];
-                $vendor_name = $row['Vendor Name'];
-                $warranty_upto = $row['Warranty Up To'];
-                $location = $row['Location'];
-                $wing = $row['Wing'];
-                $hod = $row['HOD'];
-                $stock_qty = $row['In Stock Quantity'];
-                $status = $row['Status'];
-            } // end foreach loop
+            $row = mysqli_fetch_assoc($result);
+            
+            $id = $row['ID'];
+            $old_id = $row['Old ID'];
+            $username = $row['Username'];
+            $emp_no = $row['Emp No'];
+            $department = $row['Department'];
+            $detail = $row['Detail'];
+            $serial_no = $row['Serial No'];
+            $model_no = $row['Model No'];
+            $delivery_date = $row['Delivery Date'];
+            $bill_no = $row['Bill No'];
+            $po_no = $row['PO No'];
+            $asset_no = $row['Asset No'];
+            $indent_no = $row['Indent No'];
+            $vendor_name = $row['Vendor Name'];
+            $warranty_upto = $row['Warranty Up To'];
+            $location = $row['Location'];
+            $wing = $row['Wing'];
+            $hod = $row['HOD'];
+            $stock_qty = $row['In Stock Quantity'];
+            $status = $row['Status'];
         }
         else
         {

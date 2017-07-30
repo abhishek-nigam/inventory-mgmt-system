@@ -35,11 +35,8 @@
             }
             else if($row_count == 1)
             {
-                // This for loop runs only once
-                    foreach($result as $row)
-                    {
-                        return $row[$field];
-                    }
+                $row = mysqli_fetch_assoc($result);
+                return $row[$field];
             }
             else
             {

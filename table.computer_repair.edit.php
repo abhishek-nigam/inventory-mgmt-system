@@ -30,33 +30,32 @@
 
         if($result)
         {
-            //This loop runs only once
-            foreach($result as $row)
-            {
-                $repair_id = $row['Repair ID'];
-                $id = $row['ID'];
-                $username = $row['Username'];
-                $department = $row['Department'];
-                $receipt_date = $row['Receipt Date'];
-                $location = $row['Location'];
-                $emp_no = $row['Emp No'];
-                $contact_no = $row['Contact No'];
-                $wing = $row['Wing'];
-                $hw_detail = $row['HW Detail'];
-                $item_descp = $row['Item Description'];
-                $fault_descp = $row['Fault Description'];
-                $remarks = $row['Remarks'];
-                $warranty = $row['Warranty Up To'];
-                $update_status = $row['Update Status'];
-                $update_time = $row['Update Time'];
-                $update_date = $row['Update Date'];
-                $pending_status = $row['Pending Status'];
-                $add_date = $row['Add Date'];
-                $email = $row['Email'];
-                $it_lab = $row['IT Lab'];
-                $hw_part = $row['HW Part'];
-                $status = $row['Status'];
-            } // end foreach loop
+            $row = mysqli_fetch_assoc($result);
+
+            $repair_id = $row['Repair ID'];
+            $id = $row['ID'];
+            $username = $row['Username'];
+            $department = $row['Department'];
+            $receipt_date = $row['Receipt Date'];
+            $location = $row['Location'];
+            $emp_no = $row['Emp No'];
+            $contact_no = $row['Contact No'];
+            $wing = $row['Wing'];
+            $hw_detail = $row['HW Detail'];
+            $item_descp = $row['Item Description'];
+            $fault_descp = $row['Fault Description'];
+            $remarks = $row['Remarks'];
+            $warranty = $row['Warranty Up To'];
+            $update_status = $row['Update Status'];
+            $update_time = $row['Update Time'];
+            $update_date = $row['Update Date'];
+            $pending_status = $row['Pending Status'];
+            $add_date = $row['Add Date'];
+            $email = $row['Email'];
+            $it_lab = $row['IT Lab'];
+            $hw_part = $row['HW Part'];
+            $status = $row['Status'];
+
         }
         else
         {

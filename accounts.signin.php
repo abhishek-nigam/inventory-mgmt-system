@@ -48,14 +48,12 @@
                 }
                 else if($row_count == 1)
                 {
-                    //This for loop runs only once
-                    foreach($result as $row)
-                    {
-                        $user_id = $row['id'];
-                        $_SESSION['user_id'] = $user_id;
+                    $row = mysqli_fetch_assoc($result);
+                    
+                    $user_id = $row['id'];
+                    $_SESSION['user_id'] = $user_id;
 
-                        header("Location: index.php");                        
-                    }
+                    header("Location: index.php");                        
                 }
                 else
                 {
@@ -148,7 +146,10 @@
                 else
                     { 
             ?>
-                    <div class="notification is-success">
+                    <div class="notification">
+                        <div class="greet_img_container" style="text-align: center;">
+                            <?php include './resources/images/sun_clouds.html' ?>
+                        </div>
                         <h1 class="title">Hi, there! Have a good day</h1>
 
                         <br>
