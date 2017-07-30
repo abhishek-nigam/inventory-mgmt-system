@@ -6,7 +6,7 @@
 <div class="navbar">
 
     <div class="navbar-brand">
-        <a href="/dmrc" class="navbar-item">
+        <a href="./index.php" class="navbar-item">
             <img src='<?php echo "./resources/images/dmrc_logo.gif"?>' alt="DMRC Logo">
             <span id="navbar-brand-title">DMRC Service Portal</span>
         </a>
@@ -22,20 +22,18 @@
 
         <div class="navbar-start">
 
-            <a href="" class="navbar-item">Home</a>
+            <a href="./index.php" class="navbar-item">Home</a>
             <div href="" class="navbar-item has-dropdown is-hoverable">
                 <a href="" class="navbar-link is-active">Services</a>
                 <div class="navbar-dropdown">
 
-                    <a href="./table.computer_stock.php" class="navbar-item is-active">Computer Stock</a>
+                    <a href="./table.computer_stock.php" class="navbar-item">Computer Stock</a>
                     <a href="./table.computer_repair.php" class="navbar-item">Computer Repair</a>
-                    <hr class="navbar-divider">
-                    <a href="" class="navbar-item">More Services</a>
 
                 </div>
             </div><!-- end dropdown navbar item-->
-            <a href="" class="navbar-item">About Us</a>
-            <a href="" class="navbar-item">Contact</a>
+            <a href="./aboutus.php" class="navbar-item">About Us</a>
+            <a href="./contact.php" class="navbar-item">Contact</a>
 
         </div><!-- end navbar start-->
 

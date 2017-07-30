@@ -6,40 +6,57 @@ resultsPerPageSelectField.addEventListener("change", function(){
 });
 
 
-var option_type;
-var data_id;
-var table_name;
+
+var modal = document.getElementById("modal");
+var modalTitle = document.getElementById("modal-title");
+var modalInfo = document.getElementById("modal-info");
+var confirmBtn = document.getElementById("modal-confirm-btn");
+var cancelBtn = document.getElementById("modal-cancel-btn");
+var cancelBgBtn = document.getElementById("modal-bg-cancel-btn");
 
 var options = document.getElementsByClassName('options');
 
 for (option of options)
-    {
-        option.addEventListener("click",function(e){
-            option_type = this.getAttribute("data-option-type");
-            data_id = this.getAttribute("data-row-id");
-            table_name = this.getAttribute("data-table-name");
+{
+    option.addEventListener("click",function(e){
 
-            if(option_type == 'delete')
-            {
-                var proceed_confirm = confirm("Do you really want to delete record with ID " + data_id + " ? \nWARNING: This will permanently delete this record!");
-            }
-            else if(option_type == 'edit')
-            {
-                var proceed_confirm = confirm("Do you want to edit the record with ID " + data_id + " ?");
-            }
+        var option_type = this.getAttribute("data-option-type");
+        var data_id = this.getAttribute("data-row-id");
+        var table_name = this.getAttribute("data-table-name");
 
-            if(proceed_confirm)
+
+        if(option_type == 'delete')
+        {
+            modalTitle.innerHTML = "Delete record #" + data_id + " ?";
+            modalInfo.innerHTML = "Confirm delete record with ID " + data_id + " ? <br><br><strong>Warning! This will permanently delete this record and cannot be recovered.</strong>";
+        }
+        else if(option_type == 'edit')
+        {
+            modalTitle.innerHTML = "Edit record #" + data_id + " ?";
+            modalInfo.innerHTML = "Confirm editing record with ID " + data_id + " ?";
+        }
+
+        modal.classList.add("is-active");
+
+        confirmBtn.addEventListener("click", function(){
+            if(option_type == 'edit')
             {
-                if(option_type == 'edit')
-                {
-                    var path = "./table." + table_name + ".edit.php?" + "record_id=" + data_id;
-                    window.location = path;
-                }
-                else if(option_type == 'delete')
-                {
-                    var path = "./table.delete.php?" + "table_name=" + table_name + "&record_id=" + data_id;
-                    window.location = path;
-                }
+                var path = "./table." + table_name + ".edit.php?" + "record_id=" + data_id;
+                window.location = path;
+            }
+            else if(option_type == 'delete')
+            {
+                var path = "./table.delete.php?" + "table_name=" + table_name + "&record_id=" + data_id;
+                window.location = path;
             }
         });
-    }
+
+        cancelBtn.addEventListener("click", function(){
+            modal.classList.remove("is-active");
+        });
+
+        cancelBgBtn.addEventListener("click", function(){
+            modal.classList.remove("is-active");
+        });
+    });
+}

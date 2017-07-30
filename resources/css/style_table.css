@@ -5,3 +5,7 @@
 .options {
     cursor: pointer;
 }
+
+.is-active {
+    display: flex;
+}   

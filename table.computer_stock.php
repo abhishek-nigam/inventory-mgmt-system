@@ -383,6 +383,25 @@
 
 
 
+
+
+<div class="modal" id="modal">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <div class="box">
+    
+        <h1 id="modal-title" class="title is-2"></h1>
+        <h2 id="modal-info" class="title is-5"></h2>
+        <p>
+            <a class="button is-danger is-medium" id="modal-confirm-btn">Confirm</a>
+            <a class="button is-info is-medium" id="modal-cancel-btn">Cancel</a>
+        </p>
+
+    </div>
+  </div>
+  <button class="modal-close is-large" id="modal-bg-cancel-btn"></button>
+</div>
+
 <?php
     /////////////////// E N D ////////////////////////
     }
