@@ -23,12 +23,12 @@
 
             if(!(($records_limit == 2) || ($records_limit == 5) || ($records_limit == 10) || ($records_limit == 20)))
             {
-                $records_limit = 2;    
+                $records_limit = 5;    
             }
         }
         else
         {
-            $records_limit = 2;
+            $records_limit = 5;
         }
         
         if(isset($_GET['q']))
