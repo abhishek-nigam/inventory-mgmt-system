@@ -52,6 +52,7 @@
 <!--/////////// NOT DISPLAY PHP CODE ////////////// -->
 <?php
 
+    // Also change queries rewritten for pagination
     if(isset($search))
     {   
         $search_safe = mysqli_real_escape_string($conn,$search);
@@ -64,16 +65,16 @@
         $query_wo_limit = "SELECT * FROM `computer_stock`";
     } // end search if
 
-    if($page>0)
+    if($page>=0)
     {
         $offset = $page*$records_limit;
-        $query = $query_wo_limit." LIMIT $records_limit OFFSET $offset";
     }
     else
     {
-        $query = $query_wo_limit." LIMIT $records_limit";
-    }// end pagination if
+        $offset = 0;
+    } // end page if
     
+    $query = $query_wo_limit." LIMIT $records_limit OFFSET $offset"; // Final query
 
     $result = mysqli_query($conn,$query);
 
@@ -88,7 +89,8 @@
     <div class="columns">
         
         <div class="column is-12-desktop">
-            
+
+
             <div class="block">
                 <div class="level">
 
@@ -105,17 +107,18 @@
                         </div>
 
                         <!--Resets page  -->
-                        <form style="margin-bottom: 0;" class="level-item field has-addons" action="<?php echo $current_file?>?limit=<?php $records_limit ?>">
+                        <form style="margin-bottom: 0;" class="level-item field has-addons" action="<?php echo $current_file; ?>">
                             <div class="control">
                                 <input type="search" name="q" class="input" value="<?php if(isset($search)){ echo $search ;}?>">
                             </div>
                             <div class="control">
                                 <a href="" class="button is-info">Search</a>
                             </div>
+                            <input type="hidden" name="limit" value="<?php echo $records_limit; ?>">
                         </form><!-- end level item form-->
 
                         <!--Resets page  -->
-                         <form class="level-item field has-addons" id="results-per-page-form" action="<?php echo $current_file?>?q=<?php if(isset($search)){echo $search;}?>"> 
+                         <form class="level-item field has-addons" id="results-per-page-form" action="<?php echo $current_file; ?>"> 
                             <div class="control">
                                 <a class="button is-static">No. of results / page </a>
                             </div>
@@ -130,13 +133,21 @@
                                     </select>
                                 </span>
                             </div>
+                            <?php
+                                if(isset($search))
+                                {
+                                    echo "<input type='hidden' name='q' value=".$search.">";
+                                }
+                            ?>
                         </form><!-- end level item form-->
 
                     </div>
 
                 </div><!-- end level-->
             </div><!--end block-->
-            
+
+
+
             <div class="block table-container">
 
                 <?php if($result)
@@ -254,6 +265,8 @@
 
             </div><!--end block-->
 
+
+
             <nav class="pagination">
                 <?php
                     if($page>0)
@@ -279,22 +292,29 @@
                 ?>
                     <a href="#" class="pagination-previous" disabled>Previous Page</a>
                 <?php
+                    } // end page if
+                    
+                    if(isset($search))
+                    {   
+                        $search_safe = mysqli_real_escape_string($conn,$search);
+                        $search_safe_int = intval($search_safe);
+
+                        $query_total_no = "SELECT COUNT(*) AS 'total' FROM `computer_stock` WHERE (`Username` LIKE '%$search_safe%') OR (`Department` LIKE '%$search_safe%') OR (`Vendor Name` LIKE '%$search_safe%') OR (`ID`=$search_safe_int) OR (`Bill No` LIKE '%$search_safe%') OR (`PO No` LIKE '%$search_safe%')";
                     }
+                    else
+                    {
+                        $query_total_no = "SELECT COUNT(*) AS 'total' FROM `computer_stock`";
+                    } // end search if
                     
-                    // Current page results from $offset($page*$records_limit) to $offset + $records_limit;
-                    // Hence $records_limit * ($page + 1) results shown till now
-    
-                    $next_page_results = ($page + 1)*$records_limit;
-                    $query = $query_wo_limit." LIMIT $records_limit OFFSET $next_page_results";
-                    
-                    
-                    $result = mysqli_query($conn,$query);
+                    $result = mysqli_query($conn,$query_total_no);
 
                     if($result)
                     {
-                        $row_count = mysqli_num_rows($result);
+                        $result_row = mysqli_fetch_assoc($result);
+                        $result_total_no = $result_row['total'];
 
-                        if($row_count>0)
+                        $remaining_records = $result_total_no - ($page + 1)*$records_limit;
+                        if($remaining_records>0)
                         {
                 ?>
                         <a class="pagination-next" 
@@ -302,33 +322,60 @@
     
                                         if(isset($search))
                                         {
-                                            $page = $page + 2;
-                                            echo $current_file.'?q='.$search.'&limit='.$records_limit.'&page='.$page;       
+                                            $next_page = $page + 2; // because we decrement page once for processing
+                                            echo $current_file.'?q='.$search.'&limit='.$records_limit.'&page='.$next_page;       
                                         }
                                         else
                                         {
-                                            $page = $page + 2;
-                                            echo $current_file.'?limit='.$records_limit.'&page='.$page;
+                                            $next_page = $page + 2; // because we decrement page once for processing
+                                            echo $current_file.'?limit='.$records_limit.'&page='.$next_page;
                                         }           
                                   ?>">
                                   Next Page
-                        </a>
+                        </a>    
                 <?php
                         }
                         else
                         {
                 ?>
-                        <a href="#" class="pagination-next" disabled>Next Page</a>
+                            <a href="#" class="pagination-next" disabled>Next Page</a>
                 <?php
-                        } //end row count if
-
-                    } // end query result if
+                        } // end remaining records if
+                    } // end result total no if
                     else
                     {
-                        echo "Unable to process query";
+                        echo "Query cannot be processed";
                     }
                 ?>
-            </nav>
+                
+                <ul class="pagination-list">
+                    <?php
+                        $current_page = $page+1;
+                        
+                        if($result)
+                        {
+                            $remainder = $result_total_no%$records_limit;
+                            if($remainder==0)
+                            {
+                                $total_pages = $result_total_no/$records_limit;
+                            }
+                            else
+                            {
+                                $total_pages = intval(($result_total_no/$records_limit) + 1);
+                            }
+
+                            echo "Page $current_page of $total_pages" ;
+                        }
+                        else
+                        {
+                            $total_pages = "Undefined";
+                        }
+                    ?>
+                </ul><!-- end pagination list-->
+            </nav><!-- end pagination nav-->
+
+
+
         </div><!--end column-->
 
     </div><!-- end columns-->
