@@ -1,8 +1,9 @@
 <?php
-    require './inc.connect.php';
-
     ob_start();
     session_start();
+    
+    require './inc.connect.php';
+    
     $current_file = $_SERVER['SCRIPT_NAME'];
 
     if(isset($_SERVER['HTTP_REFERER']) && !empty($_SERVER['HTTP_REFERER']))

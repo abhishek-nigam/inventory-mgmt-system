@@ -4,5 +4,11 @@
 
 <title>DMRC Service Portal</title>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.4.4/css/bulma.css"> 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./resources/css/bulma.css"> 
+<link rel="stylesheet" href="./resources/css/font-awesome.min.css">
+<link rel="stylesheet" href="./resources/css/jquery-ui.min.css">
+<link rel="stylesheet" href="./resources/css/jquery-ui-timepicker-addon.css">
+
+<script src="./resources/js/jquery-3.2.1.min.js" defer></script>
+<script src="./resources/js/jquery-ui.min.js" defer></script>
+<script src="./resources/js/jquery-ui-timepicker-addon.js" defer></script>

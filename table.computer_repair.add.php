@@ -381,6 +381,8 @@
         header("Location: accounts.signin.php?redirect=true");
     } // end logged in if
 ?>
+
+    <script src="./resources/js/script_datetime.js"></script>
 <!--FOOTER-->
     <?php require './inc.footer.php' ?>
 </body>
