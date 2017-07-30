@@ -14,10 +14,23 @@
     <?php require './inc.header.php' ?>
 
 <?php
-    $records_limit = 2;
 
     if(logged_in())
     {
+        if(isset($_GET['limit']))
+        {
+            $records_limit = abs(intval($_GET['limit']));
+
+            if(!(($records_limit == 2) || ($records_limit == 5) || ($records_limit == 10) || ($records_limit == 20)))
+            {
+                $records_limit = 2;    
+            }
+        }
+        else
+        {
+            $records_limit = 2;
+        }
+        
         if(isset($_GET['q']))
         {
             $search = $_GET['q'];
@@ -27,6 +40,10 @@
         {
             $page = abs(intval($_GET['page']));
             $page--;
+        }
+        else
+        {
+            $page = 0;
         }
     //////////////// S T A R T /////////////////////
 ?>
@@ -47,7 +64,7 @@
         $query_wo_limit = "SELECT * FROM `computer_stock`";
     } // end search if
 
-    if(isset($page) && $page>0)
+    if($page>0)
     {
         $offset = $page*$records_limit;
         $query = $query_wo_limit." LIMIT $records_limit OFFSET $offset";
@@ -87,12 +104,31 @@
                             <a href="./table.computer_stock.add.php" class="button is-info"><span class="fa fa-plus"></span>&nbsp;Add</a>    
                         </div>
 
-                        <form class="level-item field has-addons" action="<?php echo $current_file?>">
+                        <!--Resets page  -->
+                        <form style="margin-bottom: 0;" class="level-item field has-addons" action="<?php echo $current_file?>?limit=<?php $records_limit ?>">
                             <div class="control">
                                 <input type="search" name="q" class="input" value="<?php if(isset($search)){ echo $search ;}?>">
                             </div>
                             <div class="control">
                                 <a href="" class="button is-info">Search</a>
+                            </div>
+                        </form><!-- end level item form-->
+
+                        <!--Resets page  -->
+                         <form class="level-item field has-addons" id="results-per-page-form" action="<?php echo $current_file?>?q=<?php if(isset($search)){echo $search;}?>"> 
+                            <div class="control">
+                                <a class="button is-static">No. of results / page </a>
+                            </div>
+
+                            <div class="control">
+                                <span class="select">
+                                    <select name="limit" id="results-per-page">
+                                        <option value="2"<?php if($records_limit == 2){ echo "selected"; }?>>2</option>
+                                        <option value="5"<?php if($records_limit == 5){ echo "selected"; }?>>5</option>
+                                        <option value="10"<?php if($records_limit == 10){ echo "selected"; }?>>10</option>
+                                        <option value="20"<?php if($records_limit == 20){ echo "selected"; }?>>20</option>
+                                    </select>
+                                </span>
                             </div>
                         </form><!-- end level item form-->
 
@@ -223,12 +259,35 @@
                     if($page>0)
                     {
                 ?>
-                        <a class="pagination-previous">Previous</a>
+                        <a class="pagination-previous"
+                            href="<?php
+                                        if(isset($search))
+                                        {
+                                            echo $current_file.'?q='.$search.'&limit='.$records_limit.'&page='.$page;
+                                        }
+                                        else
+                                        {
+                                            echo $current_file.'?limit='.$records_limit.'&page='.$page;
+                                        }           
+                                  ?>">
+                            Previous Page
+                        </a>
                 <?php
                     }
-
-                    $query = $query_wo_limit." ";
-
+                    else
+                    {
+                ?>
+                    <a href="#" class="pagination-previous" disabled>Previous Page</a>
+                <?php
+                    }
+                    
+                    // Current page results from $offset($page*$records_limit) to $offset + $records_limit;
+                    // Hence $records_limit * ($page + 1) results shown till now
+    
+                    $next_page_results = ($page + 1)*$records_limit;
+                    $query = $query_wo_limit." LIMIT $records_limit OFFSET $next_page_results";
+                    
+                    
                     $result = mysqli_query($conn,$query);
 
                     if($result)
@@ -238,10 +297,36 @@
                         if($row_count>0)
                         {
                 ?>
-                        <a class="pagination-next">Next Page</a>
+                        <a class="pagination-next" 
+                            href="<?php
+    
+                                        if(isset($search))
+                                        {
+                                            $page = $page + 2;
+                                            echo $current_file.'?q='.$search.'&limit='.$records_limit.'&page='.$page;       
+                                        }
+                                        else
+                                        {
+                                            $page = $page + 2;
+                                            echo $current_file.'?limit='.$records_limit.'&page='.$page;
+                                        }           
+                                  ?>">
+                                  Next Page
+                        </a>
+                <?php
+                        }
+                        else
+                        {
+                ?>
+                        <a href="#" class="pagination-next" disabled>Next Page</a>
                 <?php
                         } //end row count if
+
                     } // end query result if
+                    else
+                    {
+                        echo "Unable to process query";
+                    }
                 ?>
             </nav>
         </div><!--end column-->
