@@ -393,8 +393,8 @@
         <h1 id="modal-title" class="title is-2"></h1>
         <h2 id="modal-info" class="title is-5"></h2>
         <p>
-            <a class="button is-danger is-medium" id="modal-confirm-btn">Confirm</a>
-            <a class="button is-info is-medium" id="modal-cancel-btn">Cancel</a>
+            <a class="button is-danger" id="modal-confirm-btn">Confirm</a>
+            <a class="button is-info" id="modal-cancel-btn">Cancel</a>
         </p>
 
     </div>

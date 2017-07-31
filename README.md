@@ -1,6 +1,7 @@
 # Inventory Management System
 This website is a system for managing stock inventories. Specifically its made for CRUD functionalites on two tables according to use case, but can be easily extended to manage other tables in a database.
 <br>
+<br>
 Check out the website [here.](http://dmrc-inventory.000webhostapp.com)
 <br>
 Developed for [Delhi Metro Rail Corporation (DMRC)](http://www.delhimetrorail.com)
@@ -41,7 +42,7 @@ Want to contribute? Great! Fork me!
 MIT
 
 ### Say Hi
-[Email: abhisheknigam1996@gmail.com](mailto://abhisheknigam1996@gmail.com)
+[Email: abhisheknigam1996@gmail.com](mailto://abhisheknigam1996@gmail.com)<br>
 [LinkedIn](https://www.linkedin.com/in/abhishek-nigam25)
 
 *last uplated: 31 July 2017*
