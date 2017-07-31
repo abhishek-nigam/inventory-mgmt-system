@@ -1,14 +1,14 @@
-<?php require './inc.core.php' ?>
+<?php require 'inc.core.php' ?>
 
 <!doctype html>
 <html lang="en">
 <head>
 <!--HEAD-->
-    <?php require './inc.head.php' ?>
+    <?php require 'inc.head.php' ?>
 </head>
 <body>
 <!--HEADER/NAVBAR-->
-    <?php require './inc.header.php' ?>
+    <?php require 'inc.header.php' ?>
 
 <?php
     //////////////// S T A R T /////////////////////
@@ -22,7 +22,7 @@
 
             <div class="notification is-success">
                 Registration successful.<br>
-                Please <a href="./accounts.signin.php">sign in</a> to continue.
+                Please <a href="accounts.signin.php">sign in</a> to continue.
             </div>
 
         </div><!-- end column-->
@@ -36,6 +36,6 @@
 ?>
 
 <!--FOOTER-->
-    <?php require './inc.footer.php' ?>
+    <?php require 'inc.footer.php' ?>
 </body>
 </html>

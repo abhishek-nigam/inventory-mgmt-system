@@ -1,2 +1,47 @@
-# inventory-mgmt-system
-This website offers basic CRUD functionality for managing stock inventories.
+# Inventory Management System
+This website is a system for managing stock inventories. Specifically its made for CRUD functionalites on two tables according to use case, but can be easily extended to manage other tables in a database.
+<br>
+Check out the website [here.](http://dmrc-inventory.000webhostapp.com)
+<br>
+Developed for [Delhi Metro Rail Corporation (DMRC)](http://www.delhimetrorail.com)
+
+
+### Dependencies
+This project uses the following :
+
+- [PHP 5.6](http://php.net/)<br>
+- [Bulma CSS Framework v0.4.4](http://bulma.io/)<br>
+- [Font Awesome Icons](http://fontawesome.io/)<br>
+
+It also uses these widgets :<br>
+
+- [jQuery Date Picker](http://jqueryui.com/datepicker/)<br>
+- [jQuery Time Picker](http://trentrichardson.com/examples/timepicker/)<br>
+
+And their dependencies :<br>
+
+- [jQuery](http://jquery.com/)<br>
+- [jQuery UI](http://jqueryui.com/)<br>
+
+
+This project was developed and tested using XAMPP for Windows
+
+### Database Schema
+Please see the attached *phpmyadmin* snaps in screenshots/schema.
+
+### How to run:
+
+- Make the tables in db according to the specified schema<br>
+- Change database credentials in src/inc.connect.php like user, host, password, etc
+
+### Development
+Want to contribute? Great! Fork me!
+
+### License
+MIT
+
+### Say Hi
+[Email: abhisheknigam1996@gmail.com](mailto://abhisheknigam1996@gmail.com)
+[LinkedIn](https://www.linkedin.com/in/abhishek-nigam25)
+
+*last uplated: 31 July 2017*

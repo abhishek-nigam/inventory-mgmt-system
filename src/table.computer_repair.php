@@ -1,17 +1,17 @@
-<?php require './inc.core.php' ?>
+<?php require 'inc.core.php' ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <!--HEAD-->
-    <?php require './inc.head.php' ?>
-    <link rel="stylesheet" href="./resources/css/style_table.css">
-    <script src="./resources/js/script_table.js" defer></script>
+    <?php require 'inc.head.php' ?>
+    <link rel="stylesheet" href="../resources/css/style_table.css">
+    <script src="../resources/js/script_table.js" defer></script>
 </head>
 <body>
 
 <!--HEADER/NAVBAR-->
-    <?php require './inc.header.php' ?>
+    <?php require 'inc.header.php' ?>
 
 <?php
 
@@ -103,7 +103,7 @@
                     <div class="level-right">
                         
                         <div class="level-item">
-                            <a href="./table.computer_repair.add.php" class="button is-info"><span class="fa fa-plus"></span>&nbsp;Add</a>    
+                            <a href="table.computer_repair.add.php" class="button is-info"><span class="fa fa-plus"></span>&nbsp;Add</a>    
                         </div>
 
                         <!--Resets page  -->
@@ -423,6 +423,6 @@
 ?>
 
 <!--FOOTER-->
-    <?php require './inc.footer.php' ?>
+    <?php require 'inc.footer.php' ?>
 </body>
 </html>

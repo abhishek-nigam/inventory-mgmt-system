@@ -1,15 +1,15 @@
-<?php require './inc.core.php' ?>
+<?php require 'inc.core.php' ?>
 
 <!doctype html>
 <html lang="en">
 <head>
 <!--HEAD-->
-    <?php require './inc.head.php' ?>
+    <?php require 'inc.head.php' ?>
 </head>
 <body>
 
 <!--HEADER/NAVBAR-->
-    <?php require './inc.header.php' ?>
+    <?php require 'inc.header.php' ?>
 
 <?php
     if(isset($_GET['redirect']))
@@ -53,7 +53,7 @@
                     $user_id = $row['id'];
                     $_SESSION['user_id'] = $user_id;
 
-                    header("Location: index.php");                        
+                    header("Location: ../index.php");                        
                 }
                 else
                 {
@@ -137,7 +137,7 @@
                         </form>
 
                         <br>
-                        <p><small>Don't have a account?<br><a href="./accounts.signup.php">Sign up</a> to create a new account.</small></p>
+                        <p><small>Don't have a account?<br><a href="accounts.signup.php">Sign up</a> to create a new account.</small></p>
 
                     </div><!-- end box-->
 
@@ -148,12 +148,12 @@
             ?>
                     <div class="notification">
                         <div class="greet_img_container" style="text-align: center;">
-                            <?php include './resources/images/sun_clouds.html' ?>
+                            <?php include '../resources/images/sun_clouds.html' ?>
                         </div>
                         <h1 class="title">Hi, there! Have a good day</h1>
 
                         <br>
-                        <small>Sign in again as a different user? <a href="./accounts.signout.php">Sign out</a>.</small>
+                        <small>Sign in again as a different user? <a href="accounts.signout.php">Sign out</a>.</small>
                     </div>
             <?php 
                     } // end logged in if
@@ -173,6 +173,6 @@
     /////////////////// E N D ////////////////////////
 ?>
 <!--FOOTER-->
-    <?php require './inc.footer.php' ?>
+    <?php require 'inc.footer.php' ?>
 </body>
 </html>

@@ -1,15 +1,22 @@
-<?php require './inc.core.php' ?>
+<?php require 'src/inc.core.php' ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <!--HEAD-->
-    <?php require './inc.head.php' ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>DMRC Service Portal</title>
+
+    <link rel="stylesheet" href="resources/css/bulma.css"> 
+    <link rel="stylesheet" href="resources/css/font-awesome.min.css">
 </head>
 <body>
 
 <!--HEADER/NAVBAR-->
-    <?php require './inc.header.php' ?>
+    <?php require 'src/inc.header.php' ?>
 
 <?php
     if(isset($_GET['signout']))
@@ -44,7 +51,7 @@
             
             <div class="column is-4-desktop is-offset-4-desktop is-10-mobile is-offset-1-mobile is-10-touch is-offset-1-touch">
                 <div class="notification is-primary">
-                        <a href="./accounts.signin.php?redirect=false">Sign in</a> again?
+                        <a href="src/accounts.signin.php?redirect=false">Sign in</a> again?
                 </div>
             </div>
             
@@ -55,7 +62,7 @@
     }
     else
     {
-        header("Location: accounts.signin.php?redirect=false");
+        header("Location: src/accounts.signin.php?redirect=false");
     } // end signout if
 ?>
 
@@ -64,6 +71,6 @@
     /////////////////// E N D ////////////////////////
 ?>
 <!--FOOTER-->
-    <?php require './inc.footer.php' ?>
+    <?php require 'src/inc.footer.php' ?>
 </body>
 </html>

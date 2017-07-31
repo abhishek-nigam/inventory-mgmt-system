@@ -1,15 +1,15 @@
-<?php require './inc.core.php' ?>
+<?php require 'inc.core.php' ?>
 
 <!doctype html>
 <html lang="en">
 <head>
 <!--HEAD-->
-    <?php require './inc.head.php' ?>
+    <?php require 'inc.head.php' ?>
 </head>
 <body>
 
 <!--HEADER/NAVBAR-->
-    <?php require './inc.header.php' ?>
+    <?php require 'inc.header.php' ?>
 
 <?php
     
@@ -50,14 +50,14 @@
                 <?php
                         } // end action only if
                 ?>
-                            <a href="<?php echo './table.'.$table_name.'.php'?>">Go</a> to record list.
+                            <a href="<?php echo 'table.'.$table_name.'.php'?>">Go</a> to record list.
                 <?php 
                     } 
                     else
                     {
                 ?>
                         Record added to table successfully.<br>
-                        <a href="./index.php">Go</a> to homepage.
+                        <a href="../index.php">Go</a> to homepage.
                 <?php
                     } // end table_name and action if
                 ?>
@@ -79,6 +79,6 @@
 ?>
 
 <!--FOOTER-->
-    <?php require './inc.footer.php' ?>
+    <?php require 'inc.footer.php' ?>
 </body>
 </html>

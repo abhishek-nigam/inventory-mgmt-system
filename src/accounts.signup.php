@@ -1,15 +1,15 @@
-<?php require './inc.core.php' ?>
+<?php require 'inc.core.php' ?>
 
 <!doctype html>
 <html lang="en">
 <head>
 <!--HEAD-->
-    <?php require './inc.head.php' ?>
+    <?php require 'inc.head.php' ?>
 </head>
 <body>
 
 <!--HEADER/NAVBAR-->
-    <?php require './inc.header.php' ?>
+    <?php require 'inc.header.php' ?>
 <?php
     //////////////// S T A R T /////////////////////
 ?>
@@ -177,7 +177,7 @@
             ?>
                 <div class="notification is-warning">
                     You are already logged in.<br>
-                    Please <a href="./accounts.signout.php">sign out</a> to register.
+                    Please <a href="accounts.signout.php">sign out</a> to register.
                 </div>
             <?php 
                 } // end not logged in if
@@ -194,6 +194,6 @@
 ?>
 
 <!--FOOTER-->
-    <?php require './inc.footer.php' ?>
+    <?php require 'inc.footer.php' ?>
 </body>
 </html>

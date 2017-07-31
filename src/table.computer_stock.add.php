@@ -1,15 +1,15 @@
-<?php require './inc.core.php' ?>
+<?php require 'inc.core.php' ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <!--HEAD-->
-    <?php require './inc.head.php' ?>
+    <?php require 'inc.head.php' ?>
 </head>
 <body>
 
 <!--HEADER/NAVBAR-->
-    <?php require './inc.header.php' ?>
+    <?php require 'inc.header.php' ?>
 
 <?php
     if(logged_in())
@@ -361,8 +361,8 @@
     } // end logged in if
 ?>
 
-    <script src="./resources/js/script_datetime.js"></script>
+    <script src="../resources/js/script_datetime.js"></script>
 <!--FOOTER-->
-    <?php require './inc.footer.php' ?>
+    <?php require 'inc.footer.php' ?>
 </body>
 </html>

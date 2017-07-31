@@ -2,7 +2,7 @@
     ob_start();
     session_start();
     
-    require './inc.connect.php';
+    require 'inc.connect.php';
     
     $current_file = $_SERVER['SCRIPT_NAME'];
 
