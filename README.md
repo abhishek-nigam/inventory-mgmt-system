@@ -28,7 +28,7 @@ And their dependencies :<br>
 This project was developed and tested using XAMPP for Windows
 
 ### Database Schema
-Please see the attached *phpmyadmin* snaps in screenshots/schema.
+Check for schemas directory for table schema images, and sql file to create the associated database.
 
 ### How to run:
 
