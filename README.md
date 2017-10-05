@@ -38,6 +38,15 @@ Check for schemas directory for table schema images, and sql file to create the 
 ### Development
 Want to contribute? Great! Fork me!
 
+
+#### Screenshots 
+![login page](./screenshots/01.png)
+![first page](./screenshots/02.png)
+![list](./screenshots/03.png)
+![add new](./screenshots/04.png)
+![edit page](./screenshots/05.png)
+
+
 ### License
 MIT
 
